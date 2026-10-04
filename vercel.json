@@ -43,6 +43,7 @@
     "CACHE_STORE": "database",
     "SESSION_DRIVER": "cookie",
     "LOG_CHANNEL": "stderr",
+    "DB_PORT": "6543",
     "VERCEL": "1"
   }
 }
