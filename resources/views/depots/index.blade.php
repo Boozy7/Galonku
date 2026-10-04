@@ -170,7 +170,7 @@
                 <div id="depotCardWrapper_{{ $depot->id }}" 
                      class="cursor-pointer transition-all rounded-3xl"
                      onclick="focusOnMapPin({{ $depot->id }}, {{ $depot->lat }}, {{ $depot->lng }})">
-                    <x-depot-card :depot="$depot" />
+                    @include('components.depot-card', ['depot' => $depot])
                 </div>
             @empty
                 <div class="bg-white rounded-3xl p-8 text-center border border-dashed border-slate-300">

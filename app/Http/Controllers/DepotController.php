@@ -12,7 +12,7 @@ class DepotController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Depot::with(['products', 'reviews']);
+        $query = Depot::with(['products']);
 
         // Search by name, address, or district
         if ($search = $request->input('search')) {

@@ -1,4 +1,4 @@
-@props(['depot'])
+
 
 <div class="group bg-white rounded-3xl border border-slate-200/80 hover:border-brand-500/50 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 overflow-hidden flex flex-col justify-between"
      data-depot-id="{{ $depot->id }}"
