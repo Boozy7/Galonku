@@ -1,0 +1,9 @@
+.git
+.github
+tests
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+database/*.sqlite
+database/*.sqlite-journal

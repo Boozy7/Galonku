@@ -81,3 +81,22 @@ Route::post('/api/ai/ask', function (\Illuminate\Http\Request $request, GeminiSe
     }
 })->name('api.ai.ask');
 
+// Deployment Database Migration Helper (Protected by secret token)
+Route::get('/deploy-migrate', function (\Illuminate\Http\Request $request) {
+    if ($request->query('secret') !== 'galonku2026') {
+        abort(403, 'Unauthorized access to migration endpoint.');
+    }
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        $migrateOut = \Illuminate\Support\Facades\Artisan::output();
+
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        $seedOut = \Illuminate\Support\Facades\Artisan::output();
+
+        return response("<h2>Database Migrated & Seeded Successfully!</h2><pre>{$migrateOut}\n{$seedOut}</pre>");
+    } catch (\Throwable $e) {
+        return response("<h2>Migration Failed:</h2><pre>{$e->getMessage()}</pre>", 500);
+    }
+});
+
+
