@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('purchase_date');
             $table->enum('status', ['TERKIRIM_KE_DINKES', 'SEDANG_INVESTIGASI', 'INSPEKSI_LAPANGAN', 'SELESAI'])->default('TERKIRIM_KE_DINKES');
             $table->text('dinkes_notes')->nullable();
+            $table->string('proof_image_path')->nullable();
             $table->timestamps();
         });
     }

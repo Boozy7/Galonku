@@ -12,8 +12,12 @@ class DepotSeeder extends Seeder
 {
     public function run(): void
     {
+        // Get the depot user created in DatabaseSeeder
+        $depotUserId = \App\Models\User::where('role', 'depot')->first()->id ?? null;
+
         // 1. Depot Tirta Sehat Kertajaya (Gubeng)
         $d1 = Depot::create([
+            'user_id' => $depotUserId,
             'slug' => 'depot-tirta-sehat-kertajaya',
             'name' => 'Depot Tirta Sehat Kertajaya',
             'tagline' => 'Air Minum RO 8 Tahap Bersertifikat Dinkes Surabaya & Uji BBLK',

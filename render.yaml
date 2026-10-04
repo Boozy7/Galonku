@@ -1,0 +1,58 @@
+services:
+  - type: web
+    name: galonku-web
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: Dockerfile
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: Galonku
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_URL
+        sync: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: error
+
+      # Database Configuration (Point to Supabase / Neon PostgreSQL)
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSLMODE
+        value: require
+
+      # Session & Cache via Database for persistent logins on free container
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+
+      # Automation Flags
+      - key: RUN_MIGRATIONS
+        value: "true"
+      - key: RUN_SEEDER
+        value: "true"
+
+      # Google AI Studio (Gemini API)
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-1.5-flash

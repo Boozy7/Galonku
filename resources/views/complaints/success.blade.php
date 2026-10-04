@@ -42,12 +42,45 @@
                 </div>
                 <div class="flex justify-between">
                     <span class="text-slate-500">Status Tindak Lanjut:</span>
-                    <span class="inline-flex items-center gap-1 font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                        Menunggu Peninjauan Petugas
-                    </span>
+                    @if($complaint->status == 'SELESAI')
+                        <span class="inline-flex items-center gap-1 font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            Selesai Ditangani
+                        </span>
+                    @elseif($complaint->status == 'INSPEKSI_LAPANGAN')
+                        <span class="inline-flex items-center gap-1 font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                            Inspeksi Lapangan
+                        </span>
+                    @elseif($complaint->status == 'SEDANG_INVESTIGASI')
+                        <span class="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                            Sedang Diinvestigasi
+                        </span>
+                    @else
+                        <span class="inline-flex items-center gap-1 font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                            Terkirim Ke Dinkes
+                        </span>
+                    @endif
                 </div>
             </div>
+
+            @if($complaint->dinkes_notes)
+                <div class="mt-4 pt-4 border-t border-slate-200">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Catatan Resmi Dinkes:</span>
+                    <p class="text-xs text-slate-700 italic bg-white p-3 rounded-xl border border-slate-200/60 shadow-inner">
+                        "{{ $complaint->dinkes_notes }}"
+                    </p>
+                    
+                    @if($complaint->proof_image_path)
+                        <div class="mt-3">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Bukti Tindak Lanjut / Dokumentasi Lapangan:</span>
+                            <img src="{{ asset($complaint->proof_image_path) }}" alt="Bukti Tindak Lanjut" class="rounded-xl border border-slate-200 shadow-sm max-h-48 object-cover">
+                        </div>
+                    @endif
+                </div>
+            @endif
 
             @if($complaint->photo_url)
                 <div class="mt-4 pt-3 border-t border-slate-200">

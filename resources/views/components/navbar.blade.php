@@ -69,6 +69,38 @@
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>SLHS Dinkes Surabaya</span>
                 </div>
+
+                @auth
+                    @if(auth()->user()->role === 'dinkes')
+                        <a href="{{ route('dinkes.dashboard') }}" class="px-3.5 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold transition hover:bg-slate-800">
+                            Portal Dinkes
+                        </a>
+                    @elseif(auth()->user()->role === 'depot')
+                        <a href="{{ route('depot.dashboard') }}" class="px-3.5 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold transition hover:bg-slate-800">
+                            Dasbor Depot
+                        </a>
+                    @else
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="px-3.5 py-2 text-slate-600 hover:text-slate-900 text-xs font-bold transition">Logout</button>
+                        </form>
+                    @endif
+                @else
+                    <div class="relative group">
+                        <button class="px-3.5 py-2 text-slate-600 hover:text-slate-900 text-xs font-bold transition flex items-center gap-1">
+                            Masuk Akses
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <!-- Dropdown -->
+                        <div class="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right z-50">
+                            <div class="p-2 flex flex-col gap-1">
+                                <a href="{{ route('login') }}" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-lg">Masuk Warga</a>
+                                <a href="{{ route('depot.login') }}" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-lg">Portal Mitra Depot</a>
+                                <a href="{{ route('dinkes.login') }}" class="px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600 rounded-lg">Portal Admin Dinkes</a>
+                            </div>
+                        </div>
+                    </div>
+                @endauth
             </div>
 
         </div>
