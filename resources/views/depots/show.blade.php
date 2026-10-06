@@ -26,9 +26,8 @@
     <!-- Hero Header Banner -->
     <div class="relative bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden mb-6">
         <div class="h-64 sm:h-80 w-full relative">
-            <img src="{{ $depot->cover_image }}" 
+            <img src="{{ asset('images/images.jpg') }}" 
                  alt="{{ $depot->name }}" 
-                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=800&q=80';"
                  class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-transparent"></div>
             

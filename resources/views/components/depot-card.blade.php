@@ -8,9 +8,8 @@
     <div>
         <!-- Card Image Header -->
         <div class="relative h-44 w-full overflow-hidden bg-slate-100">
-            <img src="{{ $depot->cover_image }}" 
+            <img src="{{ asset('images/images.jpg') }}" 
                  alt="{{ $depot->name }}" 
-                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=800&q=80';"
                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                  loading="lazy">
             
