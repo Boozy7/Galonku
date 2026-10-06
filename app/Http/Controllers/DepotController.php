@@ -126,9 +126,15 @@ class DepotController extends Controller
      */
     public function show(string $slug)
     {
-        $depot = Depot::with(['products', 'reviews' => function ($q) {
+        $query = Depot::with(['products', 'reviews' => function ($q) {
             $q->orderByDesc('created_at');
-        }])->where('slug', $slug)->orWhere('id', $slug)->firstOrFail();
+        }])->where('slug', $slug);
+
+        if (is_numeric($slug)) {
+            $query->orWhere('id', $slug);
+        }
+
+        $depot = $query->firstOrFail();
 
         return view('depots.show', [
             'depot' => $depot,

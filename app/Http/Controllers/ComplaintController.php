@@ -55,7 +55,7 @@ class ComplaintController extends Controller
             'issue_type' => $validated['issue_type'],
             'description' => $validated['description'],
             'photo_url' => $photoPath ? asset('storage/' . $photoPath) : null,
-            'status' => 'PENDING',
+            'status' => 'TERKIRIM_KE_DINKES',
         ]);
 
         return redirect()->route('complaints.success', ['ticket' => $complaint->ticket_number]);
