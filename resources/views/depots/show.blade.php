@@ -228,7 +228,7 @@
         </div>
 
         <!-- RIGHT COLUMN (1 Col): Water Products Menu, Order CTA, and Reviews -->
-        <div class="space-y-6 lg:sticky lg:top-24 self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-2 pb-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+        <div class="space-y-6">
 
             <!-- Water Products & Ordering Box -->
             <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm">
